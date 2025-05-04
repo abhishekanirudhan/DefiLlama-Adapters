@@ -2,8 +2,9 @@ const { httpGet, sumSingleBalance } = require('../helper/chain/near')
 
 async function tvl(api) {
     const balances = {};
+    const timestamp = api.timestamp || Math.floor(Date.now() / 1000);
 
-    const api_tvl = "https://flipsidecrypto.xyz/api/v1/queries/912162c9-22f1-46d9-88a1-1059b8f0b6b3/data/latest";
+    const api_tvl = `https://flipsidecrypto.xyz/api/v1/queries/912162c9-22f1-46d9-88a1-1059b8f0b6b3/data/latest?block_timestamp=${timestamp}`;
     const assetsCallResponse = await httpGet(api_tvl);
 
     // Process each item in the response
